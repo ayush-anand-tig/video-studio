@@ -63,3 +63,4 @@ that first — don't add it "for now."
 **Music / SFX**
 - You own it, or hold a license that covers the video's actual distribution (YouTube, ads, etc. — sync rights, not just streaming rights)
 - Sample rate ≥ 44.1kHz, no audible compression artifacts
+- No license needed for `tools/synth-audio.sh` output (the `synth` music bed and the tick/click/pop/whoosh effects): it's generated from sine waves and seeded noise, with nothing sampled

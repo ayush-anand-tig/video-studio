@@ -8,7 +8,7 @@
 #   [{"beat":"hook","t":0.0,"text":"Why did GPU prices jump?"}, ...]
 #   t = that beat's visual start time in seconds (src/cues.json is generated from it).
 #   Extra fields (action, word, primitive — see phases/1-preproduction.md) are ignored.
-# Run twice per video: Phase 1 (planned timing, before any code) and Phase 3 QC Gate 2.
+# Run twice per video: Phase 1 (planned timing, before any code) and Phase 4 QC Gate 2.
 #
 # Synthesizes each line with the project's real tts.sh (same TTS_PROVIDER/voice the actual
 # video would use), measures how long each one actually takes to say, and checks whether

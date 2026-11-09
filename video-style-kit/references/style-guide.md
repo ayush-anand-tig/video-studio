@@ -38,10 +38,10 @@ Default look: clean, technical and calm. Change anything here if the user's bran
 ## 5. Sound
 
 - Narration: conversational, short sentences, active verbs. For 30 s, aim for about 65–70 words.
-- Music: instrumental and unobtrusive, ducked under the voice, resolving at the end rather than cutting off.
+- Music: instrumental and unobtrusive, ducked under the voice, resolving at the end rather than cutting off. With no licensed track, use the synthesized pad (`tools/synth-audio.sh`) or no music, never a track you can't license.
 - Sound effects: few and quiet, tied to real interactions (a click, a connection), not every movement.
 - Delivery target: about −14 to −16 LUFS integrated, true peak ≤ −1 dBTP, or whatever the platform asks for.
 
 ## 6. Review checklist
 
-The checklist moved to `phases/3-qc.md` (Gate 4), alongside the other QC checks.
+The checklist moved to `phases/4-qc.md` (Gate 4), alongside the other QC checks.
