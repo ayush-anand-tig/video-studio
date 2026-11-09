@@ -8,6 +8,7 @@ Personal video studio built on `video-style-kit/`, a Claude skill for product/ex
 
 ## Where things are
 - `video-style-kit/SKILL.md`: entry point. `references/style-guide.md` = look, motion, review checklist (read before building), `production.md` = render/export/QA
+- `video-style-kit/providers.env`: script/scene drafting backend — `agent` (default, Claude writes it) or `local` (Ollama, via `tools/draft.sh`, to save tokens)
 - `video-style-kit/assets/`: fonts + icon (free licences). `brand/`, `reference-films/`, `reference-frames/` are placeholders. Fill them with your own material
 - `HANDOFF.md`: target repo structure, local tool choices, Mac Mini sizing, next steps. Read once when planning, not every session
 

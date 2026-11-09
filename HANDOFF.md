@@ -29,7 +29,7 @@ LESSONS.md        feedback after each review; the skill reads it every run
 
 | Stage | Local / open-source | Paid |
 |---|---|---|
-| Agent (script, animation code, frame review) | Qwen3-Coder / gpt-oss via Ollama or MLX (fine for scripts, weak at animation code) | **Claude Code** (keep this paid) |
+| Agent (script, animation code, frame review) | `qwen2.5:14b` script drafts, `qwen2.5-coder:14b` scene drafts via Ollama — wired up as `PROVIDER=local` in `video-style-kit/providers.env` + `tools/draft.sh` (fine for scripts, weaker at animation code) | **Claude Code** (`PROVIDER=agent`, the default — keep this paid) |
 | Rendering | HyperFrames + GSAP or Remotion, headless Chrome, ffmpeg | — |
 | Voiceover | Kokoro-82M (Apache) or Chatterbox (MIT, voice cloning) via `mlx-audio` | ElevenLabs (~$5–22/mo) |
 | Word timing + captions | mlx-whisper / whisper.cpp, WhisperX for word-level | — |
@@ -61,6 +61,7 @@ Also: 512 GB+ storage or external SSD, disable sleep (`pmset`), launchd job watc
 ## Next steps
 
 1. Decide: which Mac/RAM will render, and own cloned voice or a stock local voice?
-2. Fill `{{BRAND}}` / `{{ACCENT_COLOR}}` and add a logo to `video-style-kit/assets/brand/`.
+2. Fill `{{BRAND}}` / `{{ACCENT_COLOR}}` and add a logo to `video-style-kit/assets/brand/` — see `references/assets.md` for the import checklist and a list of reusable icon/footage/font sources.
 3. Create the skeleton above and the local voice + word-timing pipeline.
 4. Make one 20-second test video end to end to prove the chain.
+5. If `PROVIDER=local` script/scene drafts turn out useful, consider pulling `qwen2.5-coder:14b` by default and wiring voice/word-timing the same provider-toggle way.
