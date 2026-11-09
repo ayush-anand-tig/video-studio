@@ -9,3 +9,10 @@ exports/
 .env.*
 .cache/
 .DS_Store
+
+# resolved.json may be a copy of a PRIVATE signature (via SIGNATURE_SOURCE=local:...) —
+# never commit it.
+video-style-kit/signature/resolved.json
+# the wizard's output is personal by default too — move it to your own private repo
+# instead of removing this line, if you want it to survive a public push.
+video-style-kit/signature/mine.json

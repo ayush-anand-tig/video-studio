@@ -1,0 +1,33 @@
+{
+  "name": "Scanline",
+  "accentColorToken": "#2DD4F8",
+  "pulse": {
+    "mode": "continuous",
+    "shape": "dot",
+    "insetPct": 4,
+    "sizePctOfFrameHeight": 1.2,
+    "loopSeconds": 3
+  },
+  "primitives": {
+    "ripple":   { "enabled": true },
+    "bridge":   { "enabled": false },
+    "chain":    { "enabled": false },
+    "fan":      { "enabled": false },
+    "loop":     { "enabled": true },
+    "timeline": { "enabled": true },
+    "compare":  { "enabled": true },
+    "origin":   { "enabled": true },
+    "analogy":  { "enabled": true }
+  },
+  "colorRoles": {
+    "default": "accent-for-active",
+    "categoryPalette": { "enabled": false, "hues": [] },
+    "statePalette": { "enabled": false, "hues": [] },
+    "modalGrading": { "enabled": true }
+  },
+  "scopeRules": {
+    "footageContainment": "match-restraint",
+    "mechanismVsMeaningBoundary": true
+  },
+  "notes": "Inspiration: a HUD confirming what it sees, not connecting things — translated, not copied: a thin band periodically sweeps the frame, and whichever object it crosses gets targeting-bracket corners instead of a connecting line. Bridge/Chain/Fan are disabled by design in this preset: Scanline replaces 'cause draws a line to effect' with 'the sweep confirms this object matters right now,' one at a time. Use Compare/Timeline/Ripple/Loop as usual. Dark blue-gray ground, cyan accent."
+}

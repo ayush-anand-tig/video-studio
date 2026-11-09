@@ -31,8 +31,8 @@ LESSONS.md        feedback after each review; the skill reads it every run
 |---|---|---|
 | Agent (script, animation code, frame review) | `qwen2.5:14b` script drafts, `qwen2.5-coder:14b` scene drafts via Ollama — wired up as `PROVIDER=local` in `video-style-kit/providers.env` + `tools/draft.sh` (fine for scripts, weaker at animation code) | **Claude Code** (`PROVIDER=agent`, the default — keep this paid) |
 | Rendering | HyperFrames + GSAP or Remotion, headless Chrome, ffmpeg | — |
-| Voiceover | Kokoro-82M (Apache) or Chatterbox (MIT, voice cloning) via `mlx-audio` | ElevenLabs (~$5–22/mo) |
-| Word timing + captions | mlx-whisper / whisper.cpp, WhisperX for word-level | — |
+| Voiceover | `tools/tts.sh` — `say` (zero setup, default), Kokoro-82M (Apache, best local quality/size, runs on a MacBook Air, no GPU) or Kitten TTS nano (~24MB, lighter still) — wired, not yet installed. Chatterbox dropped from the default plan: needs a GPU, Mac Air can't run it well | ElevenLabs via `tools/tts.sh`, needs `ELEVENLABS_API_KEY` |
+| Word timing + captions | `tools/transcribe.sh` — `faster-whisper` (`TRANSCRIBE_PROVIDER=whisper`), not yet installed; falls back to even timing until it is | — |
 | Music | ACE-Step (Apache), Stable Audio Open. Avoid MusicGen (non-commercial weights) | Epidemic Sound / Artlist |
 | SFX | Freesound CC0, Stable Audio Open | — |
 | Mixing + QA | ffmpeg `loudnorm`/`ebur128`, contact sheets reviewed by Claude | — |

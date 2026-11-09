@@ -1,0 +1,33 @@
+{
+  "name": "Halo",
+  "accentColorToken": "#C98A3E",
+  "pulse": {
+    "mode": "continuous",
+    "shape": "dot",
+    "insetPct": 0,
+    "sizePctOfFrameHeight": 6,
+    "loopSeconds": 4
+  },
+  "primitives": {
+    "ripple":   { "enabled": true },
+    "bridge":   { "enabled": true, "drawSeconds": [0.6, 0.9], "easing": "ease-in-out" },
+    "chain":    { "enabled": true },
+    "fan":      { "enabled": false },
+    "loop":     { "enabled": true },
+    "timeline": { "enabled": true },
+    "compare":  { "enabled": true },
+    "origin":   { "enabled": true },
+    "analogy":  { "enabled": true }
+  },
+  "colorRoles": {
+    "default": "accent-for-active",
+    "categoryPalette": { "enabled": false, "hues": [] },
+    "statePalette": { "enabled": false, "hues": [] },
+    "modalGrading": { "enabled": true }
+  },
+  "scopeRules": {
+    "footageContainment": "match-restraint",
+    "mechanismVsMeaningBoundary": true
+  },
+  "notes": "Inspiration: one calm, watchful presence (HAL-9000 / arc-reactor adjacent) — translated, not copied: a single ring is both Pulse and Bridge in one motif, not two separate devices. At rest it's a perfect circle (the identity mark, pulse.insetPct is 0 because it isn't corner-anchored — it sits centered or wherever the main object is). When a beat needs a cause→effect, the same ring deforms into an arc reaching toward the effect object, then relaxes back to a circle. Fan is disabled: a single ring can't reach toward several things in different directions at once without losing the 'one calm presence' feeling — use Chain (fired sequentially) instead when a beat seems to call for Fan. The most universal of the three presets: works across any subject, least visually opinionated, recommended as the primary default."
+}

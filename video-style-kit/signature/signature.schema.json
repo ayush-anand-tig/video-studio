@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Video signature",
+  "description": "A tool-agnostic personal motion-signature spec for video-style-kit. Specified in percentages, seconds and named color roles — never pixels or a renderer-specific easing name — so it renders the same in HyperFrames, Remotion, After Effects or anything else.",
+  "type": "object",
+  "required": ["name", "accentColorToken", "pulse", "primitives", "colorRoles", "scopeRules"],
+  "properties": {
+    "name": { "type": "string", "description": "What you call this signature." },
+    "accentColorToken": { "type": "string", "description": "Usually \"{{ACCENT_COLOR}}\" to inherit the project's brand color, or a literal hex." },
+    "pulse": {
+      "type": "object",
+      "description": "The one constant identity mark.",
+      "required": ["mode"],
+      "properties": {
+        "mode": { "enum": ["bookend", "continuous"], "description": "bookend = alone on screen at open/close only. continuous = a small looping mark in a fixed corner for the whole video." },
+        "shape": { "enum": ["dot", "logo"], "default": "dot" },
+        "holdSeconds": { "type": "number", "default": 0.8, "description": "bookend only: how long the mark holds alone at each end." },
+        "insetPct": { "type": "number", "default": 4, "description": "continuous only: inset from each edge, as % of frame." },
+        "sizePctOfFrameHeight": { "type": "number", "default": 1.2 },
+        "loopSeconds": { "type": "number", "default": 1.6 }
+      }
+    },
+    "primitives": {
+      "type": "object",
+      "description": "Which causal/structural devices are in play, and their timing. Disable any that don't fit your content — not every signature needs all of them.",
+      "properties": {
+        "ripple":   { "$ref": "#/$defs/primitive", "description": "One main object transforming in place. The common case; usually always enabled." },
+        "bridge":   { "$ref": "#/$defs/primitive", "description": "Line + traveling dot between two separate objects with a real cause→effect." },
+        "chain":    { "$ref": "#/$defs/primitive", "description": "Bridge fired sequentially for a terminating multi-step process." },
+        "fan":      { "$ref": "#/$defs/primitive", "description": "One cause, several simultaneous effects (or the reverse)." },
+        "loop":     { "$ref": "#/$defs/primitive", "description": "Chain whose last step reconnects to its first; continuous, never fades." },
+        "timeline": { "$ref": "#/$defs/primitive", "description": "A persistent progression axis (years, measures, steps — any ordered axis)." },
+        "compare":  { "$ref": "#/$defs/primitive", "description": "Parallel co-equal alternatives. Never a connecting line between them." },
+        "origin":   { "$ref": "#/$defs/primitive", "description": "At most once per video: a stylistically distinct narrative cold-open." },
+        "analogy":  { "$ref": "#/$defs/primitive", "description": "At most once per video: a relatable image morphs into the technical diagram." }
+      }
+    },
+    "colorRoles": {
+      "type": "object",
+      "required": ["default"],
+      "properties": {
+        "default": { "const": "accent-for-active", "description": "The baseline rule: one accent, reserved for whatever matters right now." },
+        "categoryPalette": {
+          "type": "object",
+          "description": "Named exception: a small fixed hue-per-type palette, scoped to taxonomy/architecture beats only.",
+          "properties": { "enabled": { "type": "boolean", "default": false }, "hues": { "type": "array", "items": { "type": "string" } } }
+        },
+        "statePalette": {
+          "type": "object",
+          "description": "Named exception: color marks progress through a process, scoped to algorithm/state-diagram beats only.",
+          "properties": { "enabled": { "type": "boolean", "default": false }, "hues": { "type": "array", "items": { "type": "string" } } }
+        },
+        "modalGrading": {
+          "type": "object",
+          "description": "Whether a whole-palette shift is used to signal a change of narrative mode (e.g. an Origin vignette).",
+          "properties": { "enabled": { "type": "boolean", "default": true } }
+        }
+      }
+    },
+    "scopeRules": {
+      "type": "object",
+      "required": ["footageContainment", "mechanismVsMeaningBoundary"],
+      "properties": {
+        "footageContainment": {
+          "enum": ["match-restraint", "margin-only", "direct-bold"],
+          "description": "match-restraint: overlay directly on real footage, weight matched to your line/accent language. margin-only: never touch real footage directly, use a dedicated strip. direct-bold: cartoon-weight overlay is fine, it's the brand."
+        },
+        "mechanismVsMeaningBoundary": {
+          "type": "boolean",
+          "default": true,
+          "description": "If true, purely interpretive/thematic beats (no literal on-screen cause/effect) get Pulse only — never force a causal primitive onto an opinion."
+        }
+      }
+    },
+    "notes": { "type": "string", "description": "Freeform: aesthetic references, what to avoid copying, anything a future reader needs." }
+  },
+  "$defs": {
+    "primitive": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "drawSeconds": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2, "description": "[min, max] draw-in duration, where applicable." },
+        "holdSeconds": { "type": "number" },
+        "fadeSeconds": { "type": "number" },
+        "easing": { "type": "string", "default": "ease-out" },
+        "pathStyle": { "enum": ["curve", "grid-snapped"], "default": "curve", "description": "curve = smooth bezier (the original default). grid-snapped = right-angle hops, for a more systems/circuit feeling." }
+      }
+    }
+  }
+}
