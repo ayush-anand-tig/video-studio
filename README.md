@@ -6,11 +6,15 @@ Make product and explainer videos with Claude Code: brief → script → voiceov
 
 ```sh
 git clone https://github.com/ayush-anand-tig/video-studio && cd video-studio
-./install.sh          # checks tools, links the skill into ~/.claude/skills, reports voice options
-claude                # then: "make a 20-second video about <topic>"
+./install.sh
+claude
 ```
 
-That's it — Claude reads `video-style-kit/SKILL.md` and works the brief with you conversationally (only asking about gaps it can't infer), writes the script, generates or waits for your voiceover, builds the HTML/CSS/GSAP scene, and renders it. Set your brand first: replace `{{BRAND}}` and `{{ACCENT_COLOR}}` (`grep -rn "{{" video-style-kit`) and add your logo to `video-style-kit/assets/brand/` — see `video-style-kit/references/assets.md` for the import checklist and reusable icon/footage/font sources if you don't have your own yet.
+Then just say: **"make a 20-second video about `<topic>`."**
+
+That's it — nothing to set up first. It works immediately with a bundled original default signature (a consistent set of motion devices so the video looks considered, not generic) and a neutral placeholder brand. Claude writes the script, generates or waits for your voiceover, builds the scene, and renders it, only asking you about gaps it can't infer.
+
+Want your own brand or your own signature instead of the defaults? That's all optional and comes after — see "Make it yours" below.
 
 ## Tools needed
 
@@ -25,7 +29,7 @@ Nothing optional is installed automatically; `install.sh` just reports what it f
 
 ## Make it yours
 
-Every video carries a **signature** — a small set of consistent motion devices (how cause-and-effect, repetition, and identity render) so your videos look like *yours* no matter the topic. A bundled original default ships in `video-style-kit/signature/presets/` (pick with `SIGNATURE_SOURCE` in `video-style-kit/signature/source.env`: `default`, a local file, a GitHub repo, or any URL).
+Every video carries a **signature** — a small set of consistent motion devices (how cause-and-effect, repetition, and identity render) so your videos look like *yours* no matter the topic. The bundled default (`SIGNATURE_SOURCE=default` in `video-style-kit/signature/source.env`) is Halo; two more original presets ship alongside it (`preset:signal`, `preset:scanline`) — or point `SIGNATURE_SOURCE` at a local file, a GitHub repo, or any URL instead.
 
 Want your own instead of the bundled one? Just ask, conversationally, in a Claude Code session here:
 

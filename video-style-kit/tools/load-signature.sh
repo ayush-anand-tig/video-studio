@@ -8,8 +8,14 @@ OUT="$HERE/resolved.json"
 
 case "${SIGNATURE_SOURCE:-default}" in
   default)
-    cp "$HERE/default.json" "$OUT"
-    echo "resolved: default -> $OUT"
+    cp "$HERE/presets/halo.json" "$OUT"
+    echo "resolved: default (halo preset — see presets/ for signal/scanline alternates) -> $OUT"
+    ;;
+  preset:*)
+    name="${SIGNATURE_SOURCE#preset:}"
+    [ -f "$HERE/presets/$name.json" ] || { echo "No bundled preset named '$name'. Options: $(ls "$HERE/presets" | sed 's/\.json$//' | tr '\n' ' ')" >&2; exit 1; }
+    cp "$HERE/presets/$name.json" "$OUT"
+    echo "resolved: preset ($name) -> $OUT"
     ;;
   local:*)
     path="${SIGNATURE_SOURCE#local:}"
