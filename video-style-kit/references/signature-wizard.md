@@ -50,7 +50,7 @@ Write `signature/mine.json` following `signature.schema.json`, fill `colorRoles`
 answers suggests otherwise, and tell them in 2–3 lines what you built and how to change
 `SIGNATURE_SOURCE` later if they want to point at a different file instead.
 
-**Say this plainly once, at the end:** if this signature is personal/proprietary to them
-the way a personal design is to this repo's original author, `signature/mine.json` should stay
-out of any repo they intend to make public — keep it in a private repo or local-only, and
+**Say this plainly once, at the end:** if this signature is meant to be personal or
+proprietary to them, `signature/mine.json` should stay out of any repo they intend to make
+public — keep it in a private repo or local-only, and
 point `SIGNATURE_SOURCE` at that path instead of committing it here.
