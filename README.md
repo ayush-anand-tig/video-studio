@@ -7,7 +7,7 @@ Make product and explainer videos with Claude Code: brief → script → voiceov
 Needs Node.js, ffmpeg and Claude Code.
 
 ```sh
-git clone https://github.com/<you>/video-studio && cd video-studio
+git clone https://github.com/ayush-anand-tig/video-studio && cd video-studio
 ./install.sh          # checks tools, links the skill into ~/.claude/skills
 claude                # then: "make a 20-second video about <topic>"
 ```
