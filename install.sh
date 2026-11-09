@@ -13,6 +13,10 @@ elif [[ -e "$L" ]]; then echo "STOP: $L exists and isn't a link to this kit. Mov
 else ln -s "$KIT" "$L"; echo "linked: $L -> $KIT"; fi
 [[ -f LESSONS.md ]] || printf '# Lessons\n\nOne line per lesson, newest first. The skill reads this before every video.\n' > LESSONS.md
 
+git config core.hooksPath .githooks
+echo "ok: pre-commit hook active (.githooks/pre-commit — secrets scan + copyright check)"
+command -v gitleaks >/dev/null && echo "  ok: gitleaks" || echo "  not installed: gitleaks (brew install gitleaks, for a real secrets scan instead of the basic fallback)"
+
 echo "Voice (informational, none of this is required — video-style-kit/voice.env picks the default):"
 command -v say >/dev/null && echo "  ok: say (macOS built-in TTS)"
 python3 -c "import kokoro_onnx" 2>/dev/null && echo "  ok: kokoro-onnx" || echo "  not installed: kokoro-onnx (pip install kokoro-onnx soundfile, for better local voice quality)"
