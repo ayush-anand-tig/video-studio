@@ -1,0 +1,7 @@
+{
+  "model": "sonnet",
+  "permissions": {
+    "allow": ["Bash(ffmpeg:*)", "Bash(ffprobe:*)", "Bash(git status:*)", "Bash(git diff:*)"],
+    "deny": ["Read(./**/*.mp4)", "Read(./**/*.wav)", "Read(./node_modules/**)", "Read(./**/renders/**)", "Read(./**/exports/**)"]
+  }
+}

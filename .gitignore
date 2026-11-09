@@ -1,0 +1,11 @@
+node_modules/
+renders/
+exports/
+*.mp4
+*.mov
+*.wav
+*.mp3
+.env
+.env.*
+.cache/
+.DS_Store
