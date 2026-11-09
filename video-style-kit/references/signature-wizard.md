@@ -3,7 +3,7 @@
 A quick, conversational way to get a starter `signature.json` of your own — not a research
 project. Ask these six questions **one at a time**, in chat, not as a form. Infer an answer
 from context where you already have one instead of asking. When done, write the result to
-`signature/mine.json` (never into `signature/default.json` — that one's shared) and set
+`signature/mine.json` (never into `signature/presets/` — those are shared) and set
 `SIGNATURE_SOURCE=local:signature/mine.json` in `signature/source.env`.
 
 Trigger this when the user asks to build their own signature, design pattern, or visual
@@ -46,7 +46,7 @@ identity for their videos.
 ## After the questions
 
 Write `signature/mine.json` following `signature.schema.json`, fill `colorRoles` and
-`scopeRules` with the defaults from `signature/default.json` unless something in their
+`scopeRules` with the defaults from `signature/presets/halo.json` unless something in their
 answers suggests otherwise, and tell them in 2–3 lines what you built and how to change
 `SIGNATURE_SOURCE` later if they want to point at a different file instead.
 

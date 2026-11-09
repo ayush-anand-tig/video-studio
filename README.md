@@ -1,6 +1,6 @@
 # Video studio
 
-Make product and explainer videos with Claude Code: brief → script → voiceover → animated HTML composition (HyperFrames + GSAP) → render → ffmpeg export → review. Includes the `video-style-kit` Claude skill.
+Make product and explainer videos with Claude Code, run like a small production house: pre-production (brief, narration, tone, theme, language) → production (voiceover, animated HTML composition with HyperFrames + GSAP, render, ffmpeg export) → QC (sync, loudness, frames). Includes the `video-style-kit` Claude skill.
 
 ## Quickstart
 
@@ -12,7 +12,19 @@ claude
 
 Then just say: **"make a 20-second video about `<topic>`."**
 
-That's it — nothing to set up first. It works immediately with a bundled original default signature (a consistent set of motion devices so the video looks considered, not generic) and a neutral placeholder brand. Claude writes the script, generates or waits for your voiceover, builds the scene, and renders it, only asking you about gaps it can't infer.
+That's it — nothing to set up first. It works immediately with a bundled original default signature (a consistent set of motion devices so the video looks considered, not generic) and a neutral placeholder brand. Claude writes the brief and script, generates or waits for your voiceover, builds the scene, renders it and QCs it, only asking you about gaps it can't infer.
+
+## How it works
+
+One skill, three phases. `video-style-kit/SKILL.md` is a short producer's run sheet, and each phase has its own doc in `video-style-kit/phases/` with an exit gate. Claude doesn't move on until the gate passes.
+
+| Phase | Decides / makes | Gate |
+|---|---|---|
+| 1. Pre-production | Brief (audience, takeaway, tone, theme, language, sourced facts), script, beat map | `tools/check-sync.sh` confirms the narration fits the planned timing, before any code is written |
+| 2. Production | Voiceover, word timing, scenes, render, mix + export | Cue map generated from the beat map; animation is deterministic |
+| 3. QC & delivery | Spec, sync, loudness, contact-sheet review against a checklist | All four gates pass, then 4K/vertical deliverables and a line in `LESSONS.md` |
+
+Say "review this video" to jump straight to QC, or point Claude at an existing `projects/<slug>/` to resume wherever it left off.
 
 Want your own brand or your own signature instead of the defaults? That's all optional and comes after — see "Make it yours" below.
 
@@ -21,6 +33,7 @@ Want your own brand or your own signature instead of the defaults? That's all op
 | For | Required | Optional, better quality |
 |---|---|---|
 | Rendering | Node.js (`npx hyperframes`), ffmpeg | — |
+| QC (sync check) | `jq`, `bc` (both ship with recent macOS) | — |
 | Script/scene drafting | — (Claude writes it by default) | A local Ollama model, to save tokens — see `video-style-kit/providers.env` |
 | Voiceover | — (macOS `say` works out of the box) | Kokoro or Kitten TTS (better local quality, no GPU needed) or ElevenLabs (cloud) — see `video-style-kit/voice.env` |
 | Word-level timestamps | — (falls back to even timing) | `faster-whisper` — see `video-style-kit/voice.env` |

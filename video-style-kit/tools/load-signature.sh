@@ -1,6 +1,6 @@
 #!/bin/sh
 # Resolves signature/source.env into an actual file at signature/resolved.json.
-# Run this once before step 4 (Build) if source.env changed since the last render.
+# Phase 1 (phases/1-preproduction.md) runs this for every video, so resolved.json is never stale.
 set -eu
 HERE="$(cd "$(dirname "$0")/../signature" && pwd)"
 . "$HERE/source.env"

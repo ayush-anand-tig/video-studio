@@ -2,7 +2,8 @@
 # Checks tools and installs the video-style-kit skill for Claude Code (symlink, so edits stay in git).
 set -euo pipefail
 cd "$(dirname "$0")"
-for t in node npx ffmpeg ffprobe; do command -v $t >/dev/null && echo "ok: $t" || { echo "MISSING: $t  (brew install node ffmpeg)"; exit 1; }; done
+# jq + bc: QC's sync gate (tools/check-sync.sh) needs both; recent macOS ships them.
+for t in node npx ffmpeg ffprobe jq bc; do command -v $t >/dev/null && echo "ok: $t" || { echo "MISSING: $t  (brew install node ffmpeg jq)"; exit 1; }; done
 mkdir -p "$HOME/.claude/skills"
 L="$HOME/.claude/skills/video-style-kit"
 KIT="$(pwd -P)/video-style-kit"

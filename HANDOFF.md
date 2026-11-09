@@ -6,9 +6,9 @@ A personal studio for making product and explainer videos with Claude Code. The 
 
 | Path | Purpose |
 |---|---|
-| `video-style-kit/SKILL.md` | Skill entry point: the 7-step workflow |
-| `video-style-kit/references/style-guide.md` | Look, type, layout, motion, sound, review checklist |
-| `video-style-kit/references/production.md` | Deterministic animation, render, ffmpeg export, QA |
+| `video-style-kit/SKILL.md` | Skill entry point: routes through three gated phases |
+| `video-style-kit/phases/` | `1-preproduction.md` (brief, script, beat map, timing check), `2-production.md` (voice, build, render, export), `3-qc.md` (spec, sync, loudness, picture checklist, delivery) |
+| `video-style-kit/references/style-guide.md` | Look, type, layout, motion, sound |
 | `video-style-kit/references/assets.md` | Asset list and placeholders |
 | `video-style-kit/assets/` | Fonts (OFL) and icon (ISC); placeholders for logo and reference films |
 

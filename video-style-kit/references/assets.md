@@ -52,7 +52,7 @@ that first — don't add it "for now."
 **Reference film / your own footage** (`assets/reference-films/`, `projects/<slug>/`)
 - You own it, licensed it, or it's public domain / permissively licensed (not just "found online")
 - Resolution ≥ the target render (no upscaling soft footage to fill the frame)
-- Frame rate and color space compatible with the render pipeline (see `production.md`)
+- Frame rate and color space compatible with the render pipeline (see `phases/2-production.md`)
 - Anyone recognizable in it has consented to the footage being used this way
 - Used for pacing/motion reference only — never treat it as a source of product facts or copy
 

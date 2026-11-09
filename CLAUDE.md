@@ -1,13 +1,14 @@
 # Video studio
 
-Personal video studio built on `video-style-kit/`, a Claude skill for product/explainer videos: brief → script + beat map → voiceover → HyperFrames + GSAP composition → 4K render → ffmpeg export → QA.
+Personal video studio built on `video-style-kit/`, a Claude skill for product/explainer videos, run in three gated phases: pre-production (brief, script, beat map, timing check) → production (voiceover, HyperFrames + GSAP composition, render, ffmpeg export) → QC & delivery (spec, sync, loudness, contact sheet, then 4K/crops).
 
 ## Setup
 - `./install.sh` checks tools and installs the skill by symlink: `~/.claude/skills/video-style-kit` → `./video-style-kit` (edits here are live and tracked in git)
 - Needs: `node`/`npx`, `ffmpeg`. HyperFrames comes via `npx`. Optional ElevenLabs key in `.env` (never commit)
 
 ## Where things are
-- `video-style-kit/SKILL.md`: entry point. `references/style-guide.md` = look, motion, review checklist (read before building), `production.md` = render/export/QA
+- `video-style-kit/SKILL.md`: entry point and phase router. `phases/1-preproduction.md`, `2-production.md`, `3-qc.md` = one doc per phase, each ending in an exit gate (read only the current phase's). `references/style-guide.md` = house look, motion, sound (each phase names the sections it needs)
+- `video-style-kit/tools/check-sync.sh`: narration vs. visual timing. Runs in Phase 1 (before code) and in QC; never skip it
 - `video-style-kit/providers.env`: script/scene drafting backend — `agent` (default, Claude writes it) or `local` (Ollama, via `tools/draft.sh`, to save tokens)
 - `video-style-kit/assets/`: fonts + icon (free licences). `brand/`, `reference-films/`, `reference-frames/` are placeholders. Fill them with your own material
 - `HANDOFF.md`: target repo structure, local tool choices, Mac Mini sizing, next steps. Read once when planning, not every session
@@ -16,7 +17,7 @@ Personal video studio built on `video-style-kit/`, a Claude skill for product/ex
 `{{BRAND}}` (brand name) and `{{ACCENT_COLOR}}` (one accent hex) across the kit: `grep -rn "{{" video-style-kit`
 
 ## Rules
-- One folder per video under `projects/<slug>/` (brief, beat map, audio, source, exports). Renders and audio are gitignored.
+- One folder per video under `projects/<slug>/` (brief, beat map, audio, source, exports, qc). Renders, audio and QC images are gitignored. `beats.json` is the only source of narration and timing.
 - After each review, append the lessons to `LESSONS.md`. Read it before starting a new video.
 - Only use brand assets, music and footage you own or have a licence for.
 

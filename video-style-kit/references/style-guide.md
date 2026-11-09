@@ -44,12 +44,4 @@ Default look: clean, technical and calm. Change anything here if the user's bran
 
 ## 6. Review checklist
 
-- [ ] The one takeaway is clear to someone who has never seen the product
-- [ ] Every claim matches the source facts, with no invented numbers
-- [ ] All text is readable at 960×540 and held long enough
-- [ ] Visual changes land on their words, and nothing moves while text is being read
-- [ ] Nothing is clipped, overlapping or leaving the screen early
-- [ ] The accent is used only for active or important elements
-- [ ] The audio is balanced, loudness is on target, and the ending resolves
-- [ ] The first and last frames work as thumbnails
-- [ ] No private data, real credentials or unlicensed assets appear
+The checklist moved to `phases/3-qc.md` (Gate 4), alongside the other QC checks.

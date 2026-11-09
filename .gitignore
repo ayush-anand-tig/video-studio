@@ -1,6 +1,7 @@
 node_modules/
 renders/
 exports/
+qc/
 *.mp4
 *.mov
 *.wav
