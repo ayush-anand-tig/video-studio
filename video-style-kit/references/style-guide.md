@@ -2,8 +2,6 @@
 
 Default look: clean, technical and calm. Change anything here if the user's brand calls for it, and record the change in `LESSONS.md`.
 
-Every video also carries the personal motion signature in `signature.md` ("a personal design") by default — read it alongside this guide before building, not just this file alone.
-
 ## 1. Look
 
 - Light, quiet background (off-white or very light gray) with dark text. A dark variant works the same way with the values inverted.
