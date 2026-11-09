@@ -48,6 +48,9 @@ ffmpeg -i final-1080p.mp4 -vf "crop=ih*9/16:ih,scale=1080:1920" -c:a copy final-
 ffmpeg -i final-1080p.mp4 -af ebur128=peak=true -f null - 2>&1 | tail -12      # loudness
 ffmpeg -i final-1080p.mp4 -vf "fps=1/2,scale=480:-1,tile=4x4" -frames:v 1 sheet.jpg  # contact sheet
 ffprobe -v error -show_entries format=duration:stream=codec_name,width,height final-1080p.mp4
+tools/check-sync.sh projects/<slug>/beats.json                                 # narration vs. visual timing
 ```
 
 Review `sheet.jpg` against the checklist in `style-guide.md` §6. Inspecting one contact sheet costs far fewer tokens than inspecting many separate frames.
+
+**Always run `check-sync.sh` before calling a video done, even when it "sounds about right" on a quick listen.** A script sized for word count easily drifts seconds away from its visual beats — see `tools/check-sync.sh`'s own header for the format of `beats.json` (one entry per beat: name, visual start time, narration text). A FAIL means either the beats need retiming to match how long the narration actually takes, or the project should move to real word-level timestamps (`TRANSCRIBE_PROVIDER=whisper` in `voice.env`) instead of fixed seconds.
