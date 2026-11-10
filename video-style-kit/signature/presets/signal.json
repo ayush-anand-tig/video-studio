@@ -1,6 +1,8 @@
 {
   "name": "Signal",
   "accentColorToken": "#4ADE80",
+  "groundColorToken": "#060A08",
+  "inkColorToken": "#D6F7E2",
   "pulse": {
     "mode": "continuous",
     "shape": "dot",

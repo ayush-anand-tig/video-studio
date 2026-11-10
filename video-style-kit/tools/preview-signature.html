@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root { --ground: {{GROUND}}; --ink: {{INK}}; --accent: {{ACCENT}}; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { width: 100%; height: 100%; position: relative; font-family: "Inter", system-ui, sans-serif; }
+      #dot { position: absolute; border-radius: 50%; background: var(--accent); }
+      #ring { position: absolute; border-radius: 50%; border: 3px solid var(--accent); background: none; }
+      #label { position: absolute; left: 64px; top: 56px; color: var(--ink); opacity: .55; font-weight: 700;
+        font-size: 30px; letter-spacing: .04em; text-transform: uppercase; }
+      #sample { position: absolute; left: 64px; bottom: 90px; right: 64px; color: var(--ink);
+        font-weight: 800; font-size: 64px; letter-spacing: -.02em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{{DUR}}" data-width="1920" data-height="1080">
+      <h2 id="label" class="clip" data-start="0" data-duration="{{DUR}}" data-track-index="0">{{NAME}}</h2>
+      <div id="ring" class="clip" data-start="0" data-duration="{{DUR}}" data-track-index="1"></div>
+      <div id="dot" class="clip" data-start="0" data-duration="{{DUR}}" data-track-index="2"></div>
+      <p id="sample" class="clip" data-start="0" data-duration="{{DUR}}" data-track-index="3">{{TEXT}}</p>
+    </div>
+    <script>
+      // pulse.sizePctOfFrameHeight -> diameter in px (authored at 1080 frame height); pulse.insetPct -> corner
+      // vs centered, matching the two conventions the bundled presets already use (0 = centered, >0 = corner).
+      const sizePx = 1080 * ({{SIZE}} / 100);
+      const inset = {{INSET}};
+      const dot = document.getElementById('dot'), ring = document.getElementById('ring');
+      const cx = inset > 0 ? 1920 - 120 - sizePx / 2 : 960;
+      const cy = inset > 0 ? 180 : 520;
+      [dot, ring].forEach(el => { el.style.width = sizePx + 'px'; el.style.height = sizePx + 'px'; });
+      dot.style.left = (cx - sizePx / 2) + 'px'; dot.style.top = (cy - sizePx / 2) + 'px';
+      ring.style.left = (cx - sizePx / 2) + 'px'; ring.style.top = (cy - sizePx / 2) + 'px';
+
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(dot, { opacity: 0, scale: .7 }, { opacity: 1, scale: 1, duration: .5, ease: 'power2.out', transformOrigin: '50% 50%' }, 0);
+      tl.fromTo(ring, { opacity: .9, scale: .7 }, { opacity: 0, scale: 1.8, duration: .9, ease: 'power2.out', transformOrigin: '50% 50%' }, .05);
+      tl.fromTo('#sample', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, .3);
+      tl.fromTo('#label', { opacity: 0 }, { opacity: .55, duration: .4, ease: 'power2.out' }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

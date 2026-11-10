@@ -11,7 +11,7 @@ You're the producer. A video goes through four phases in order, and each ends in
 
 | Phase | Read on entry | Produces | Gate |
 |---|---|---|---|
-| 1. Pre-production | `phases/1-preproduction.md` | `brief.md`, `beats.json` | brief with sourced facts; script shaped as an arc; `tools/check-sync.sh` OK on planned timing; approval if asked |
+| 1. Pre-production | `phases/1-preproduction.md` | `brief.md`, `beats.json` | brief with sourced facts; script shaped as an arc; `tools/check-sync.sh` OK on planned timing; storyboard checkpoint shown |
 | 2. Production | `phases/2-production.md` | `audio/vo.wav`, `src/` (cues, captions), `exports/cut.mp4` | cues and captions generated from `beats.json`; determinism greps clean; rough cut fingerprint OK |
 | 3. Edit | `phases/3-edit.md` | `notes.md`, `audio/mix.wav`, `exports/final-1080p.mp4` | every note closed in a fresh cut; sound per brief; final exported from the locked render; approval if asked |
 | 4. QC & delivery | `phases/4-qc.md` | `qc/` sheets, deliverables, `LESSONS.md` line | spec + freshness, sync, loudness, picture checklist |
@@ -35,4 +35,4 @@ Read a phase doc when you enter that phase, not up front.
 
 ## Also here
 
-`references/style-guide.md` (house look, motion, sound), `references/assets.md` (assets, placeholders, licensing), `signature/` (active signature in `resolved.json`, chosen in `source.env`, presets in `presets/`), `providers.env` (drafting: `agent` or `local` via `tools/draft.sh`), `voice.env` (TTS and word timestamps via `tools/tts.sh`, `tools/transcribe.sh`). The phases name the other tools when they need them: `check-sync.sh`, `captions.sh`, `fingerprint.sh`, `beat-sheet.sh`, `synth-audio.sh`.
+`references/style-guide.md` (house look, motion, sound), `references/assets.md` (assets, placeholders, licensing), `signature/` (active signature in `resolved.json`, chosen in `source.env`, presets in `presets/`), `providers.env` (drafting: `agent` or `local` via `tools/draft.sh`), `voice.env` (TTS and word timestamps via `tools/tts.sh`, `tools/transcribe.sh`). The phases name the other tools when they need them: `check-sync.sh`, `captions.sh`, `fingerprint.sh`, `beat-sheet.sh`, `synth-audio.sh`, `preview-signature.sh` (compare bundled presets on the actual script before picking one), `preview-voice.sh` (compare TTS candidates by ear before picking one).

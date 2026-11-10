@@ -1,6 +1,8 @@
 {
   "name": "Halo",
   "accentColorToken": "#C98A3E",
+  "groundColorToken": "#DCE3E0",
+  "inkColorToken": "#1D1812",
   "pulse": {
     "mode": "continuous",
     "shape": "dot",

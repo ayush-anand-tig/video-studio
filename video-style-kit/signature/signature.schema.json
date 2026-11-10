@@ -7,6 +7,8 @@
   "properties": {
     "name": { "type": "string", "description": "What you call this signature." },
     "accentColorToken": { "type": "string", "description": "Usually \"{{ACCENT_COLOR}}\" to inherit the project's brand color, or a literal hex." },
+    "groundColorToken": { "type": "string", "description": "Optional. The base/background color every scene renders on. Every real build so far has reinvented this as a `--ocean`-style CSS variable by hand with the same value each time — name it here instead so tooling (e.g. preview-signature.sh) can read it. Omit for a signature that varies its ground per video." },
+    "inkColorToken": { "type": "string", "description": "Optional. The default text/line color against groundColorToken, chosen for contrast with it. Same reasoning as groundColorToken." },
     "pulse": {
       "type": "object",
       "description": "The one constant identity mark.",

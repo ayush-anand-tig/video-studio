@@ -1,6 +1,8 @@
 {
   "name": "Scanline",
   "accentColorToken": "#2DD4F8",
+  "groundColorToken": "#09111A",
+  "inkColorToken": "#E2EDF6",
   "pulse": {
     "mode": "continuous",
     "shape": "dot",

@@ -23,8 +23,9 @@ Captions:  sidecar (default), burned + sidecar (muted autoplay: social, 9:16), o
 Facts:     bullets, each with its source. The script may claim nothing else.
 ```
 
-- **Theme.** Run `$K/tools/load-signature.sh` every video (it's cheap, and it stops a stale `resolved.json` being used), then read `$K/signature/resolved.json`. If its `notes` say the subject is a poor fit, suggest another preset (`default` = Halo, `preset:signal`, `preset:scanline`). Switching edits `signature/source.env` for later videos too, so say so. Accent: `{{ACCENT_COLOR}}` if set, otherwise the signature's `accentColorToken`.
+- **Theme.** Run `$K/tools/load-signature.sh` every video (it's cheap, and it stops a stale `resolved.json` being used), then read `$K/signature/resolved.json`. If its `notes` say the subject is a poor fit, or if more than one bundled preset looks plausible for this subject, run `$K/tools/preview-signature.sh "<a line from the script>" qc/signature-preview.png` and show that one image — comparing the actual look settles it faster than comparing prose. Switching edits `signature/source.env` for later videos too, so say so. Accent: `{{ACCENT_COLOR}}` if set, otherwise the signature's `accentColorToken`.
 - **Tone sets pacing.** Calm or cinematic takes the long end of timing ranges with ease-in-out. Energetic or playful takes the short end with ease-out.
+- **Voice.** If it's not already settled (a returning project, or the user names one), run `$K/tools/preview-voice.sh "<a line from the script>" qc/voice-preview.wav` — it reads each candidate's name aloud, then that candidate's take on the line, back to back, so you pick by ear rather than from voice.env's comments. A provider that isn't installed is skipped with a note, not fatal. Set the winner as `TTS_PROVIDER`/`LOCAL_VOICE` in `voice.env`.
 - **Language.** For anything other than English, confirm the voice speaks it (`say -v '?'` or Kokoro's per-language voices; Phonon's multilingual models are non-commercial) and skip the words-per-second rule. The bundled fonts are Latin-first, so add one per `$K/references/assets.md` if needed.
 - **Music.** `synth` is the zero-setup option, as `say` is for voice: a plain synthesized pad with nothing to license (Phase 3 §4). Pick the mood nearest the Tone. A track has to pass the Music check in `$K/references/assets.md`.
 - **Brand.** Use `{{BRAND}}` and a logo from `$K/assets/brand/`. If unset, ask once. If the user doesn't care, end on the takeaway and CTA with no logo. If `$K/assets/reference-frames/` has a contact sheet, one is enough for pacing.
@@ -60,7 +61,9 @@ $K/tools/check-sync.sh beats.json
 
 This speaks each beat in the real `voice.env` voice and compares when each line would start with its `t`. On DRIFT, copy the `audio_at` column into `t` so the visuals follow the voice. If a beat truly needs more screen time, add words rather than silence. The printed narration total plus a 1–2 s end hold should fit the brief's length. Re-run until it prints OK. If `tts.sh` itself fails, fix `voice.env` first (`say` always works on macOS).
 
-If the user wants a checkpoint, show the brief's key lines and the beats as a table (beat, t, text, action).
+## 5. Storyboard checkpoint
+
+Before Production starts, show the brief's key lines and the beats as a table (beat, t, text, action) — every time, not only when asked. This is the storyboard: the cheapest point to catch a wrong beat, a missing fact or a weak turn, so it's the default feedback loop, not an opt-in extra. A change here is a `beats.json` edit and a re-run of `check-sync.sh`, nothing downstream yet. Only skip showing it when the user has already said not to pause for this kind of thing.
 
 ## Exit gate
 
@@ -69,4 +72,4 @@ If the user wants a checkpoint, show the brief's key lines and the beats as a ta
 - [ ] Every claim in `beats.json` appears in Facts
 - [ ] Every beat serves one part of the arc, and the turn is clear
 - [ ] `check-sync.sh` prints OK, and the narration total fits the length
-- [ ] The user approved, if they asked to
+- [ ] The storyboard checkpoint was shown (§5), and any resulting notes are resolved
